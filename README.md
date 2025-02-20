@@ -43,20 +43,25 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 # 実行方法（Usage）
 
 
-実機の xArm6 を 192.168.1.195 で接続し、RealSenseカメラ (D435i) も立ち上げる。
-MoveIt!を使ったロボットアームのプランニング機能を設定する。
-エンドエフェクタの座標系に対してカメラの座標系を正しく登録するプログラムを起動する。
-RealSenseカメラ (D435i) から得た点群の前処理（ノイズ除去、ダウンサンプリング、背景除去 など）を行うプログラムを起動する。
-前処理を行った点群に対して３Ｄオブジェクトの姿勢を推定するプログラムを起動する。
+1. 実機の xArm6 を 192.168.1.195 で接続し、RealSenseカメラ (D435i) も立ち上げる。
+2. MoveIt!を使ったロボットアームのプランニング機能を設定する。
+3. エンドエフェクタの座標系に対してカメラの座標系を正しく登録するプログラムを起動する。
+4. RealSenseカメラ (D435i) から得た点群の前処理（ノイズ除去、ダウンサンプリング、背景除去 など）を行うプログラムを起動する。
+5. 前処理を行った点群に対して３Ｄオブジェクトの姿勢を推定するプログラムを起動する。
+
 
 上記のことを実行するために以下のコマンドが必要になる。
 
+
 To execute the following tasks:
 
-Connect the xArm6 to 192.168.1.195 and launch the RealSense D435i camera.
-Configure the planning functionality for the robotic arm using MoveIt!.
-Launch a program to register the camera's coordinate system relative to the end effector's coordinate system.
-Start a program to preprocess point cloud data obtained from the RealSense D435i (e.g., noise removal, downsampling, background removal).
+
+1. Connect the xArm6 to 192.168.1.195 and launch the RealSense D435i camera.
+2. Configure the planning functionality for the robotic arm using MoveIt!.
+3. Launch a program to register the camera's coordinate system relative to the end effector's coordinate system.
+4. Start a program to preprocess point cloud data obtained from the RealSense D435i (e.g., noise removal, downsampling, background removal).
+5. Launch a program to estimate the 3D object's pose based on the preprocessed point cloud.
+
 
 The following command is required:
 
@@ -69,7 +74,9 @@ roslaunch xarm6_pick_and_place_pkg task.launch pipeline:=ompl
 
 もう一つターミナルを開いて以下のコマンドを実行する。
 
+
 Open another terminal and execute the following command.
+
 
 ```bash
 cd ~/<work_space>
