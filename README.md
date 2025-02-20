@@ -52,8 +52,8 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 上記のことを実行するために以下のコマンドが必要になる。
 
 
-To execute the following tasks:
 
+To execute the following tasks:
 
 1. Connect the xArm6 to 192.168.1.195 and launch the RealSense D435i camera.
 2. Configure the planning functionality for the robotic arm using MoveIt!.
@@ -61,9 +61,7 @@ To execute the following tasks:
 4. Start a program to preprocess point cloud data obtained from the RealSense D435i (e.g., noise removal, downsampling, background removal).
 5. Launch a program to estimate the 3D object's pose based on the preprocessed point cloud.
 
-
 The following command is required:
-
 
 ```bash
 cd ~/<work_space>
@@ -80,16 +78,15 @@ When the above command is executed, it results in the following.
     <img src="https://github.com/user-attachments/assets/25eec3d1-b905-4baa-8757-d23228e5f8f8" alt="Image 2" width="300">
 </div>
 
-
 もう一つターミナルを開いて以下のコマンドを実行する。
 
 Open another terminal and execute the following command.
-
 
 ```bash
 cd ~/<work_space>
 roslaunch realsense2_camera rs_camera.launch enable_pointcloud:=true
 ```
+
 上記のコマンドを実行すると以下のようになる。
 
 When the above command is executed, it results in the following.
