@@ -12,7 +12,7 @@ A Kalman filter was also applied to reduce noise in the inference time series.
 </p>
 
 <p align="center">
-      <video src="videos/demo_vision_system.mp4" autoplay muted loop >
+      <video src="./videos/demo_vision_system.mp4" autoplay muted loop >
 </p>
 
  
@@ -40,29 +40,38 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 ```
 
 
-# Usage
+# 実行方法（Usage）
 
-## MaskSVD(+Kalman filter)
 
-3D sensor is bring up.
+実機の xArm6 を 192.168.1.195 で接続し、RealSenseカメラ (D435i) も立ち上げる。
+MoveIt!を使ったロボットアームのプランニング機能を設定する。
+エンドエフェクタの座標系に対してカメラの座標系を正しく登録するプログラムを起動する。
+RealSenseカメラ (D435i) から得た点群の前処理（ノイズ除去、ダウンサンプリング、背景除去 など）を行うプログラムを起動する。
+上記のことを実行するために以下のコマンドが必要になる。
 
-```bash
-cd ~/<work_space>/
-roslaunch realsense2_camera rs_camera.launch enable_pointcloud:=true
-```
+To execute the following tasks:
 
-Preprocessing is executeed.
+    Connect the xArm6 to 192.168.1.195 and launch the RealSense D435i camera.
+    Configure the planning functionality for the robotic arm using MoveIt!.
+    Launch a program to register the camera's coordinate system relative to the end effector's coordinate system.
+    Start a program to preprocess point cloud data obtained from the RealSense D435i (e.g., noise removal, downsampling, background removal).
+
+The following command is required:
+
 
 ```bash
 cd ~/<work_space>
-rosrun mask_svd point_cloud_processor
+source devel/setup.bash
+roslaunch xarm6_pick_and_place_pkg task.launch pipeline:=ompl
 ```
 
-Posture estimation executes.
+もう一つターミナルを開いて以下のコマンドを実行する。
+
+Open another terminal and execute the following command.
 
 ```bash
-cd ~/<work_space>/src/MaskSVD/scripts/
-python3 kalman_estimate.py 
+cd ~/<work_space>
+roslaunch realsense2_camera rs_camera.launch enable_pointcloud:=true
 ```
 
 # Acknowledgement
