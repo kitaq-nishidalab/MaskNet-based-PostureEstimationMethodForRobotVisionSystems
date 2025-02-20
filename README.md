@@ -1,4 +1,4 @@
-# Development pf a MaskNet-based Posture Estimation Method for Robot Vision Systems
+# Development of a MaskNet-based Posture Estimation Method for Robot Vision Systems
 
 Fast posture estimation method using SVD and MaskNet was recently proposed.
 time-series posture estimation still has the problem of fluctuation owing to sensor and inference errors.
@@ -9,6 +9,10 @@ A Kalman filter was also applied to reduce noise in the inference time series.
 
 <p align="center">
       <img src="https://github.com/user-attachments/assets/66977d8f-ea21-4f9d-96a6-0030557f2d76" width: 100% height: auto >
+</p>
+
+<p align="center">
+      <video src="./videos/demo_vision_system.mp4" autoplay muted loop ></video>
 </p>
 
  
