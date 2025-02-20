@@ -81,6 +81,8 @@ roslaunch xarm6_pick_and_place_pkg task.launch pipeline:=ompl
 
 もう一つターミナルを開いて以下のコマンドを実行する。
 
+When the above command is executed, it results in the following.
+
 
 Open another terminal and execute the following command.
 
@@ -90,6 +92,8 @@ cd ~/<work_space>
 roslaunch realsense2_camera rs_camera.launch enable_pointcloud:=true
 ```
 上記のコマンドを実行すると以下のようになる。
+
+When the above command is executed, it results in the following.
 
 <div style="display: flex; gap: 10px;">
     <img src="https://github.com/user-attachments/assets/780fd3d5-f920-4616-8485-043151d0bcd1" alt="Image 1" width="300">
