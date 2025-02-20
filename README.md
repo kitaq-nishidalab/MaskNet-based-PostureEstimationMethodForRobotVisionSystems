@@ -73,6 +73,8 @@ roslaunch xarm6_pick_and_place_pkg task.launch pipeline:=ompl
 
 上記のコマンドを実行すると以下のようになる。
 
+When the above command is executed, it results in the following.
+
 <div style="display: flex; gap: 10px;">
     <img src="https://github.com/user-attachments/assets/23aa2a8f-dee3-4607-8b37-e40d105f628f" alt="Image 1" width="300">
     <img src="https://github.com/user-attachments/assets/25eec3d1-b905-4baa-8757-d23228e5f8f8" alt="Image 2" width="300">
@@ -80,9 +82,6 @@ roslaunch xarm6_pick_and_place_pkg task.launch pipeline:=ompl
 
 
 もう一つターミナルを開いて以下のコマンドを実行する。
-
-When the above command is executed, it results in the following.
-
 
 Open another terminal and execute the following command.
 
