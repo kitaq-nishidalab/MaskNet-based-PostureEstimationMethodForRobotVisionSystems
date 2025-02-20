@@ -162,7 +162,7 @@ class PointCloudProcessor:
 		density = len_measured_pcd / ( box_width * box_height * box_depth )
 		###print("密度：", density) 
 		if self.target=="t":
-			weight = 0.81
+			weight = 0.8
 		elif self.target=="l":
 			weight = 0.8
 
@@ -191,7 +191,7 @@ class PointCloudProcessor:
 		
 		masked_pcd = o3d.geometry.PointCloud()
 		masked_pcd.points = o3d.utility.Vector3dVector(masked_template_cheese.detach().cpu().numpy()[0])
-		#o3d.io.write_point_cloud("kalman_mask.pcd", masked_pcd)
+		o3d.io.write_point_cloud("kalman_mask.pcd", masked_pcd)
 		#o3d.io.write_point_cloud("kalman_model.pcd", model_pcd)
 
 		# 提案手法（MaskNet、SVD、ICP）の実行（実際のデータを代入）
@@ -270,13 +270,13 @@ class PointCloudProcessor:
 		self.br.sendTransform(transform_msg)
 	def save_processing_times(self):
 		# CSV保存
-        	df = pd.DataFrame(self.processing_times, columns=["Processing Time"])
-        	df.to_csv("propose_processing_times.csv", index=False)
-        	rospy.loginfo("Processing times saved to 'processing_times.csv'")
-
-        	average_time = np.mean(self.processing_times)
-        	print(f"Average execution time {average_time:.6f} seconds")
-        	self.processing_times = []
+		df = pd.DataFrame(self.processing_times, columns=["Processing Time"])
+		df.to_csv("propose_processing_times.csv", index=False)
+		rospy.loginfo("Processing times saved to 'processing_times.csv'")
+		
+		average_time = np.mean(self.processing_times)
+		print(f"Average execution time {average_time:.6f} seconds")
+		self.processing_times = []
 
 
 

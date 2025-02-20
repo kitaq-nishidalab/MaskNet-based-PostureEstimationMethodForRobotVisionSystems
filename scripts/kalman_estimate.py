@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import torch
 import open3d as o3d
@@ -28,7 +31,6 @@ def inverse_transform_matrix(transform_matrix):
     # 変換行列の逆行列を計算
     return np.linalg.inv(transform_matrix)
 
-
 class PointCloudProcessor:
 	def __init__(self):
 		rospy.init_node('posture_estimation', anonymous=True)
@@ -44,13 +46,14 @@ class PointCloudProcessor:
 		self.kf.F = np.eye(7)  # 状態遷移行列 A
 		self.kf.H = np.eye(7)  # 観測行列 C
 		self.kf.P *= 1  # 初期共分散行列 P
+		### 0.003, 0.003, 0.003, 0.034, 0.034, 0.034, 0.005
 		self.kf.Q = np.diag([0.003, 0.003, 0.003, 0.034, 0.034, 0.034, 0.005])   # プロセスノイズ　v_k の共分散 
 		self.kf.R = np.diag([0.003, 0.003, 0.003, 0.034, 0.034, 0.034, 0.005])   # 観測ノイズ　w_k の共分散　　
 		self.is_initialized = False  # 初期化フラグを追加
-
         
 		#TFブロードキャスト
-		self.br = tf2_ros.StaticTransformBroadcaster()
+		# self.br = tf2_ros.StaticTransformBroadcaster()
+		self.br = tf2_ros.TransformBroadcaster()
 		self.frame_id = None
 		self.child_frame_id = None
 		self.sub_tf = rospy.Subscriber('/tf_static', TFMessage, self.tf_callback, queue_size=100000)
@@ -61,20 +64,14 @@ class PointCloudProcessor:
 		elif self.target=="l":
 			self.model_pcd = o3d.io.read_point_cloud("../WMU2LR2020_10000.pcd")
 		
-
-		#self.masknet_load = torch.load("checkpoint/model_weight_epoch300_717_batchsize32.pth")
-		#self.masknet_load = torch.load("checkpoint/model_weight_epoch300_batchsize32_plane.pth")
-		#self.masknet_load = torch.load("checkpoint/unnoise_transformed_epoch100.pth")
-		#self.masknet_load = torch.load("checkpoint/pretrained.pth")
-		#self.masknet_load = torch.load("checkpoint/first_train.pth")
-		#self.masknet_load = torch.load("checkpoint/model_epoch700_45deg.pth")
-		#self.masknet_load = torch.load("checkpoint/unnoise_transformed_epoch100_plane.pth")
-		
+		# Initialize the posture estimation flag
+		rospy.set_param('/posture_estimation_done', True)
 		
 		self.checkpoint = torch.load("../checkpoint/model_epoch500_45deg.pth")
 		self.masknet_load = network.MaskNet()
 		self.masknet_load.load_state_dict(self.checkpoint)
-		
+		# Timer to monitor parameter
+		self.timer = rospy.Timer(rospy.Duration(0.005), self.check_posture_estimation_done)
 
 		self.sub = rospy.Subscriber('/processed_point_cloud', PointCloud2, self.point_cloud_callback, queue_size=100000)
 		#self.pub = rospy.Publisher('/estimated_transform', TransformStamped, queue_size=10)
@@ -92,11 +89,30 @@ class PointCloudProcessor:
 		self.prev_euler_angles = None
 		self.last_update_time = rospy.Time.now()  # 最初の更新時刻を設定
 
+		self.process_flag = True
+
 		
-		
-	
+	def check_posture_estimation_done(self, event):
+        # Check the value of '/posture_estimation_done' parameter
+		posture_done = rospy.get_param('/posture_estimation_done')
+		#print(posture_done)
+		if posture_done:
+			#rospy.loginfo("Posture estimation is done. Skipping point cloud processing.")
+			if self.sub:  # サブスクライバが存在していれば解除
+				self.sub.unregister()
+				self.sub = None  # サブスクライバを明示的にNoneに設定
+				rospy.loginfo("Subscriber has been unregistered.")
+		else:
+			self.process_flag = False
+			if not self.sub:  # サブスクライバがない場合にのみ新しく作成
+				rospy.loginfo("Resumed point cloud processing.")
+				self.sub = rospy.Subscriber('/processed_point_cloud', PointCloud2, self.point_cloud_callback, queue_size=100000)
 
 	def point_cloud_callback(self, msg):
+		if self.process_flag:
+			return
+		#rospy.loginfo("Processing point cloud.")
+		
 		start_time = time.time()  # 開始時刻
 		# Convert ROS PointCloud2 message to Open3D PointCloud
 		pc_data = pc2.read_points(msg, field_names=("x", "y", "z"), skip_nans=True)
@@ -127,12 +143,6 @@ class PointCloudProcessor:
 		if len(self.processing_times) < 1000:
 			self.processing_times.append(processing_time)
 			#print(len(self.processing_times))
-			
-		if len(self.processing_times) == 1000:
-			#self.save_processing_times()
-			print(f"Average execution time {np.mean(self.processing_times):.6f} seconds")
-			print(f"MaskNet inference time {np.mean(self.inference_times):.6f} seconds")
-			print(f"kalman control time {np.mean(self.control_times):.6f} seconds")
 	
 	def tf_callback(self, msg):
 		if self.frame_id is not None:
@@ -177,11 +187,10 @@ class PointCloudProcessor:
 		voxel_size = weight * (1.0 / density) ** (1/3)
 
 		model_pcd = self.model_pcd.voxel_down_sample(voxel_size) #初期値0.006
-		
+
 		measured_pcd = copy.deepcopy(self.measured_pcd)
 		model_pcd.paint_uniform_color([1.0, 0, 0])
 		measured_pcd.paint_uniform_color([1.0, 0, 0])
-
 		device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 		self.masknet_load.to(device)
 		template_tensor = torch.tensor(np.array(model_pcd.points), dtype=torch.float32).unsqueeze(0)
@@ -199,9 +208,6 @@ class PointCloudProcessor:
 		
 		masked_pcd = o3d.geometry.PointCloud()
 		masked_pcd.points = o3d.utility.Vector3dVector(masked_template_cheese.detach().cpu().numpy()[0])
-		#o3d.io.write_point_cloud("kalman_mask.pcd", masked_pcd)
-		#o3d.io.write_point_cloud("kalman_model.pcd", model_pcd)
-
 		# 提案手法（MaskNet、SVD、ICP）の実行（実際のデータを代入）
 		result_cheese = registration_model.register(masked_template_cheese, source_tensor, self.target)
 		est_T_cheese = result_cheese['est_T']     # est_T：ICPの変換行列
@@ -228,15 +234,11 @@ class PointCloudProcessor:
 		filtered_translation = self.kf.x[:3]
 		filtered_quaternion = self.kf.x[3:]
 		self.end_kalman_time = time.time()
-		
 		# フィルタリングされたデータを変換行列に戻す
 		filtered_rotation_matrix = tf_conversions.transformations.quaternion_matrix(filtered_quaternion)[:3, :3]
 		filtered_transform_matrix = np.eye(4)
 		filtered_transform_matrix[:3, :3] = filtered_rotation_matrix
 		filtered_transform_matrix[:3, 3] = filtered_translation.T
-
-		# しきい値処理を追加
-		self.apply_thresholds(translation, filtered_quaternion)
 
     		# フィルタリングされた姿勢をROSのトランスフォームとして送信
 		self.publish_transform(torch.tensor(filtered_transform_matrix))
@@ -256,12 +258,10 @@ class PointCloudProcessor:
 		
 		# 変換行列をTransformに変換
 		transform_matrix = est_T_cheese.cpu().numpy()
-		#print(transform_matrix)
 		inverse_transform_matrix = np.linalg.inv(transform_matrix)
 
 		translation = inverse_transform_matrix[:3, 3].reshape(-1)
 		#rotation_matrix = inverse_transform_matrix[:3, :3]
-		
 		
 		# Quaternionに変換
 		quaternion = tf_conversions.transformations.quaternion_from_matrix(inverse_transform_matrix)
@@ -274,44 +274,8 @@ class PointCloudProcessor:
 		transform_msg.transform.rotation.y = quaternion[1]
 		transform_msg.transform.rotation.z = quaternion[2]
 		transform_msg.transform.rotation.w = quaternion[3]
-		#print(quaternion[0], quaternion[1], quaternion[2], quaternion[3])
-		
-		#print(translation)
 		# トランスフォームをブロードキャスト
 		self.br.sendTransform(transform_msg)
-	def apply_thresholds(self, translation, quaternion):
-		# 速度ゼロ判定の閾値
-		velocity_threshold = 1000  # m/s
-		max_rotation_change = np.deg2rad(20)  # 最大回転変化 (ラジアン)
-		velocity = 0  # 初期値を設定
-
-        # 速度計算
-		if self.prev_translation is not None:
-			distance_moved = np.linalg.norm(np.array(translation) - np.array(self.prev_translation))
-			dt = (rospy.Time.now() - self.last_update_time).to_sec()
-			velocity = distance_moved / dt if dt > 0 else 0
-			
-		# 速度が閾値を超えているか確認
-		if velocity < velocity_threshold:
-			#rospy.loginfo("Robot is stationary. Ignoring update.")
-			return  # 速度ゼロ判定
-		# 前の姿勢との比較
-		if self.prev_quaternion is not None:
-			# クオータニオン差分を計算
-			delta_quaternion = quaternion_multiply(quaternion, quaternion_conjugate(self.prev_quaternion))
-		    # 差分クオータニオンから回転角度を計算
-			angle_change = 2 * np.arccos(abs(delta_quaternion[3]))  # delta_quaternion[3]はw成分
-			
-			# 最大回転変化を超えている
-			if angle_change > max_rotation_change:
-				rospy.loginfo("Unrealistic pose change detected. Ignoring update.")
-				return  # 非現実的判定
-			
-		# 現在の位置と姿勢を保存
-		self.prev_translation = translation
-		self.prev_quaternion = quaternion
-		self.last_update_time = rospy.Time.now()
-
 
 
 def main():

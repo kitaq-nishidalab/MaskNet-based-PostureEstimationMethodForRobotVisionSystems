@@ -12,7 +12,7 @@ from torch.utils.data import DataLoader
 
 
 parser = argparse.ArgumentParser("MaskNet training", add_help=True)
-parser.add_argument("--save_path", "-s", type=str, default="checkpoint/model_epoch500_45deg_shins.pth", help="Path to save the trained model")
+parser.add_argument("--save_path", "-s", type=str, default="checkpoint/model_epoch500_upsampling.pth", help="Path to save the trained model")
 #parser.add_argument("--base_dir", "-b", type=str, default="/home/nishidalab0/vision_ws_blender/output_ModelNet40", help="Base directory for the dataset")
 parser.add_argument("--epoch", type=int, default=300, help="Number of epochs")
 parser.add_argument("--batch", type=int, default=8, help="Batch size")
@@ -149,7 +149,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
 ###################################
 #-- データセットの準備 --
 ###################################
-base_dir = "/home/nishidalab0/vision_ws_blender/output_ModelNet40_45deg_shin"
+base_dir = "/home/nishidalab0/vision_ws_blender/output_ModelNet40_upsampling"
 dataset = MultiObjectRegistrationData(base_dir=base_dir)
 print(f"データ数: {len(dataset)}")
 
