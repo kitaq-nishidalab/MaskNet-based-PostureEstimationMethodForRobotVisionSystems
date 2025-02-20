@@ -12,8 +12,9 @@ A Kalman filter was also applied to reduce noise in the inference time series.
 </p>
 
 <p align="center">
-      <video src="./videos/demo_vision_system.mp4" autoplay muted loop >
+      <video src=".https://github.com/user-attachments/assets/2fdad2bc-df26-4aa1-b1c3-d2336ef581a0" autoplay muted loop >
 </p>
+
 
  
 # Installation
@@ -96,7 +97,7 @@ roslaunch realsense2_camera rs_camera.launch enable_pointcloud:=true
     <img src="https://github.com/user-attachments/assets/780fd3d5-f920-4616-8485-043151d0bcd1" alt="Image 1" width="300">
     <img src="https://github.com/user-attachments/assets/261ff09a-5886-44c3-82bf-0d36f127981d" alt="Image 2" width="300">
 </div>
-![Screenshot from 2025-02-20 14-13-33](https://github.com/user-attachments/assets/261ff09a-5886-44c3-82bf-0d36f127981d)
+
 
 # Acknowledgement
 
