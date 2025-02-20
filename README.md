@@ -93,9 +93,10 @@ roslaunch realsense2_camera rs_camera.launch enable_pointcloud:=true
 上記のコマンドを実行すると以下のようになる。
 
 <div style="display: flex; gap: 10px;">
-    <img src="https://github.com/user-attachments/assets/23aa2a8f-dee3-4607-8b37-e40d105f628f" alt="Image 1" width="300">
-    <img src="https://github.com/user-attachments/assets/780fd3d5-f920-4616-8485-043151d0bcd1" alt="Image 2" width="300">
+    <img src="https://github.com/user-attachments/assets/780fd3d5-f920-4616-8485-043151d0bcd1" alt="Image 1" width="300">
+    <img src="https://github.com/user-attachments/assets/261ff09a-5886-44c3-82bf-0d36f127981d" alt="Image 2" width="300">
 </div>
+![Screenshot from 2025-02-20 14-13-33](https://github.com/user-attachments/assets/261ff09a-5886-44c3-82bf-0d36f127981d)
 
 # Acknowledgement
 
