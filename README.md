@@ -9,11 +9,9 @@ A Kalman filter was also applied to reduce noise in the inference time series.
 
 <p align="center">
       <img src="https://github.com/user-attachments/assets/66977d8f-ea21-4f9d-96a6-0030557f2d76" width: 100% height: auto >
+      <video src=".https://github.com/user-attachments/assets/2fdad2bc-df26-4aa1-b1c3-d2336ef581a0" autoplay muted loop autoplay muted >
 </p>
 
-<p align="center">
-      <video src=".https://github.com/user-attachments/assets/2fdad2bc-df26-4aa1-b1c3-d2336ef581a0" autoplay muted loop >
-</p>
 
 
  
