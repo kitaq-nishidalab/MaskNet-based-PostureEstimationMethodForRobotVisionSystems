@@ -97,7 +97,9 @@ When the above command is executed, it results in the following.
 
 # 使い方（Usage）
 
-<video src=".https://github.com/user-attachments/assets/2fdad2bc-df26-4aa1-b1c3-d2336ef581a0" autoplay muted loop autoplay muted >
+<div style="display: flex; gap: 10px;">
+    <video src=".https://github.com/user-attachments/assets/2fdad2bc-df26-4aa1-b1c3-d2336ef581a0" autoplay muted loop autoplay muted >
+</div>
 
 # Acknowledgement
 
