@@ -9,7 +9,6 @@ A Kalman filter was also applied to reduce noise in the inference time series.
 
 <p align="center">
       <img src="https://github.com/user-attachments/assets/66977d8f-ea21-4f9d-96a6-0030557f2d76" width: 100% height: auto >
-      <video src=".https://github.com/user-attachments/assets/2fdad2bc-df26-4aa1-b1c3-d2336ef581a0" autoplay muted loop autoplay muted >
 </p>
 
 
@@ -39,7 +38,7 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 ```
 
 
-# 実行方法（Usage）
+# 実行手順（Execution steps）
 
 
 1. 実機の xArm6 を 192.168.1.195 で接続し、RealSenseカメラ (D435i) も立ち上げる。
@@ -96,6 +95,9 @@ When the above command is executed, it results in the following.
     <img src="https://github.com/user-attachments/assets/261ff09a-5886-44c3-82bf-0d36f127981d" alt="Image 2" width="300">
 </div>
 
+# 使い方（Usage）
+
+<video src=".https://github.com/user-attachments/assets/2fdad2bc-df26-4aa1-b1c3-d2336ef581a0" autoplay muted loop autoplay muted >
 
 # Acknowledgement
 
