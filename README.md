@@ -12,7 +12,7 @@ A Kalman filter was also applied to reduce noise in the inference time series.
 </p>
 
 <p align="center">
-      <video src="./videos/demo_vision_system.mp4" autoplay muted loop ></video>
+      <video src="./videos/demo_vision_system.mp4" autoplay muted loop >
 </p>
 
  
