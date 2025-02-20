@@ -94,15 +94,23 @@ When the above command is executed, it results in the following.
 
 # 使い方（Usage）
 
-本プログラムを用いた実験では以下の動画のようにリアルタイムなオブジェクトの姿勢推定からロボットによるオブジェクトの把持、操作まで行うことができます。
+本プログラムを用いた実験では、以下の動画のようにリアルタイムなオブジェクトの姿勢推定からロボットによるオブジェクトの把持、操作まで行うことができました。
 
-In the experiment using this program, as shown in the following video, real-time object pose estimation, object grasping, and manipulation by the robot can be performed.
+In the experiment using this program, as shown in the following video, real-time object pose estimation, object grasping, and manipulation by the robot could be performed.
 
 <div style="display: flex; gap: 10px;">
     <video src="https://github.com/user-attachments/assets/2fdad2bc-df26-4aa1-b1c3-d2336ef581a0" autoplay muted loop></video>
 </div>
 
-ターミナル
+実行手順を終えると、ターミナル1では「Start>>>」という文字が出ていると思います。そこで、Enterキーを押すと以下のような画面になります。
+
+After completing the execution steps, you should see the text "Start>>>" in Terminal 1. When you press the Enter key, the following screen should appear.
+
+<div style="display: flex; gap: 10px;">
+    <img src="https://github.com/user-attachments/assets/8e2174d8-53b0-412e-8118-79d6d47e4a05" alt="Image 1" width="300">
+    <img src="https://github.com/user-attachments/assets/42bb829f-25bc-4dae-90a4-ed9c1c61977d" alt="Image 2" width="300">
+</div>
+
 
 # Acknowledgement
 
