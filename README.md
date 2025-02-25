@@ -37,7 +37,10 @@ https://pytorch.org/
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-# 実験環境の準備
+#実行環境の準備
+
+本環境では、ワークスペースの中のパッケージが以下のような構造になっていることを想定しています。
+
 <div>
       <img src="https://github.com/user-attachments/assets/9aa88dec-7590-442f-8d00-f607eeaf0f00" width="300">
 </div>
