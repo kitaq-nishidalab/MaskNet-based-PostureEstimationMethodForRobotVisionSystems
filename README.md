@@ -37,12 +37,20 @@ https://pytorch.org/
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-#実行環境の準備
+# 実行環境の準備
+
+本環境で必要となるパッケージは以下の4つです。
+
+1. MaskSVD (このサイトのパッケージ)
+2. xarm_ros (https://github.com/xArm-Developer/xarm_ros)
+3. control_xarm6 (https://github.com/vivy-phtela/control_xarm6)
+4. realsense-ros (ttps://github.com/IntelRealSense/realsense-ros)
+5. xarm6_pick_and_place_pkg ()
 
 本環境では、ワークスペースの中のパッケージが以下のような構造になっていることを想定しています。
 
 <div>
-      <img src="https://github.com/user-attachments/assets/9aa88dec-7590-442f-8d00-f607eeaf0f00" width="300">
+      <img src="https://github.com/user-attachments/assets/9aa88dec-7590-442f-8d00-f607eeaf0f00" width="300" height="400">
 </div>
 
 # 実行手順（Execution steps）
