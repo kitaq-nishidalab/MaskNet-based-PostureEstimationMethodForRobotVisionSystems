@@ -37,17 +37,21 @@ https://pytorch.org/
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
+# 実験環境の準備
+<div>
+      <img src="https://github.com/user-attachments/assets/9aa88dec-7590-442f-8d00-f607eeaf0f00"  width="300">
+</div>
 
 # 実行手順（Execution steps）
 
 
-1. 実機の xArm6 を 192.168.1.195 で接続し、RealSenseカメラ (D435i) も立ち上げる。
-2. MoveIt!を使ったロボットアームのプランニング機能を設定する。
-3. エンドエフェクタの座標系に対してカメラの座標系を正しく登録するプログラムを起動する。
-4. RealSenseカメラ (D435i) から得た点群の前処理（ノイズ除去、ダウンサンプリング、背景除去 など）を行うプログラムを起動する。
-5. 前処理を行った点群に対して３Ｄオブジェクトの姿勢を推定するプログラムを起動する。
+1. 実機の xArm6 を 192.168.1.195 で接続し、RealSenseカメラ (D435i) も立ち上げ
+2. MoveIt!を使ったロボットアームのプランニング機能を設定
+3. エンドエフェクタの座標系に対してカメラの座標系を正しく登録するプログラムを起動
+4. RealSenseカメラ (D435i) から得た点群の前処理（ノイズ除去、ダウンサンプリング、背景除去 など）を行うプログラムを起動
+5. 前処理を行った点群に対して３Ｄオブジェクトの姿勢を推定するプログラムを起動
 
-上記のことを実行するために以下のコマンドが必要になる（ターミナル1）。
+上記のことを実行するために以下のコマンドが必要になります（ターミナル1）。
 
 To execute the following tasks, 
 
@@ -65,7 +69,7 @@ source devel/setup.bash
 roslaunch xarm6_pick_and_place_pkg task.launch pipeline:=ompl
 ```
 
-上記のコマンドを実行すると以下のようになる。
+上記のコマンドを実行すると以下のようになります。
 
 When the above command is executed, it results in the following.
 
@@ -74,7 +78,7 @@ When the above command is executed, it results in the following.
     <img src="https://github.com/user-attachments/assets/25eec3d1-b905-4baa-8757-d23228e5f8f8" alt="Image 2" width="300">
 </div>
 
-もう一つターミナルを開いて以下のコマンドを実行する(ターミナル2)。
+もう一つターミナルを開いて以下のコマンドを実行します(ターミナル2)。
 
 Open another terminal and execute the following command (Terminal 2). 
 
@@ -83,7 +87,7 @@ cd ~/<work_space>
 roslaunch realsense2_camera rs_camera.launch enable_pointcloud:=true
 ```
 
-上記のコマンドを実行すると以下のようになる。
+上記のコマンドを実行すると以下のようになります。
 
 When the above command is executed, it results in the following.
 
