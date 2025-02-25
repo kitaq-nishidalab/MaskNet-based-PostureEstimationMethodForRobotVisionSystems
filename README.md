@@ -44,7 +44,7 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 1. MaskSVD (このサイトのパッケージ)
 2. xarm_ros (https://github.com/xArm-Developer/xarm_ros)
 3. realsense-ros (https://github.com/IntelRealSense/realsense-ros)
-4. xarm6_pick_and_place_pkg ()
+4. xarm6_pick_and_place_pkg (https://github.com/Iwaiy/xarm6_pick_and_place_pkg/tree/iwai/devel/new_vision)
 
 本環境では、ワークスペースの中のパッケージが以下のような構造になっていることを想定しています。
 
