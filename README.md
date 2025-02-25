@@ -14,7 +14,7 @@ A Kalman filter was also applied to reduce noise in the inference time series.
 # 実行環境の準備
 
 <p align="center">
-      <img src="https://github.com/user-attachments/assets/6df9336d-0786-4401-8cc2-c790c5523522" width: 30% height: auto >
+      <img src="https://github.com/user-attachments/assets/6df9336d-0786-4401-8cc2-c790c5523522" width: 50% height: auto >
 </p>
 
 本環境で必要となるパッケージは以下の4つです。
