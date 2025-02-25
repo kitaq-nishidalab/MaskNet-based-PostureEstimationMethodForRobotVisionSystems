@@ -11,7 +11,7 @@ A Kalman filter was also applied to reduce noise in the inference time series.
       <img src="https://github.com/user-attachments/assets/66977d8f-ea21-4f9d-96a6-0030557f2d76" width: 100% height: auto >
 </p>
 
-# 実行環境の準備
+# 実行環境の準備（Setup of the Execution Environment）
 
 <p align="center">
       <img src="https://github.com/user-attachments/assets/6df9336d-0786-4401-8cc2-c790c5523522" width: 50% height: auto >
@@ -22,7 +22,6 @@ A Kalman filter was also applied to reduce noise in the inference time series.
 
 The actual robot used in this setup is the xArm6 from UFACTORY.
 The robot is connected to the computer as shown in the diagram above.
-
 
 計算機上の環境として、必要となるパッケージは以下の4つです。
 
