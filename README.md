@@ -40,7 +40,7 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 # 実験環境の準備
 <div>
       
-      <img src="https://github.com/user-attachments/assets/9aa88dec-7590-442f-8d00-f607eeaf0f00" height="300" width="300">
+      <img src="https://github.com/user-attachments/assets/9aa88dec-7590-442f-8d00-f607eeaf0f00" width: 300px height: auto>
 </div>
 
 # 実行手順（Execution steps）
