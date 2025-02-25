@@ -20,6 +20,9 @@ A Kalman filter was also applied to reduce noise in the inference time series.
 実機（ロボット）はUFACTORYのxArm6を使用しています。（https://www.ufactory.cc/wp-content/uploads/2023/05/xArm-User-Manual-V2.0.0.pdf）
 実機は上図のように計算機と接続しています。
 
+The actual robot used in this setup is the xArm6 from UFACTORY.
+The robot is connected to the computer as shown in the diagram above.
+
 計算機上の環境として、必要となるパッケージは以下の4つです。
 
 1. MaskSVD (このサイトのパッケージ)
