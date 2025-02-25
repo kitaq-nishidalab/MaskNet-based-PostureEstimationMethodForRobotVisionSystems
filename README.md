@@ -50,10 +50,10 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 
 The required packages for this environment are as follows:
 
-    MaskSVD (This site's package)
-    xarm_ros (https://github.com/xArm-Developer/xarm_ros)
-    realsense-ros (https://github.com/IntelRealSense/realsense-ros)
-    xarm6_pick_and_place_pkg (https://github.com/Iwaiy/xarm6_pick_and_place_pkg/tree/iwai/devel/new_vision)
+1. MaskSVD (This site's package)
+2. xarm_ros (https://github.com/xArm-Developer/xarm_ros)
+3. realsense-ros (https://github.com/IntelRealSense/realsense-ros)
+4. xarm6_pick_and_place_pkg (https://github.com/Iwaiy/xarm6_pick_and_place_pkg/tree/iwai/devel/new_vision)
 
 This environment assumes that the workspace follows the structure below, with only the packages listed above being necessary.
 
