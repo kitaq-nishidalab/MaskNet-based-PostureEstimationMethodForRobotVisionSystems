@@ -134,7 +134,7 @@ After completing the execution steps, you should see the text "Start>>>" in Term
     <img src="https://github.com/user-attachments/assets/42bb829f-25bc-4dae-90a4-ed9c1c61977d" alt="Image 2" width="300">
 </div>
 
-このとき、ロボットは計測した点群データを基にオブジェクトの姿勢を繰り返し推定している状態になります。この状態の間であれば、オブジェクトの位置を自由に動かしてもらって構いません。**ただし、動かしている人の手がセンサに写っていると姿勢推定のプログラムが止まるので、動かした後は手がセンサに映らないようにしましょう。**オブジェクトを動かした後、**オブジェクトの姿勢を表すTFが異常でないかを確認してから**再度ENTERキーを押します。すると、推定した姿勢を基にオブジェクトの適切な箇所(TFの中心から赤い軸を基に＋約４cmの位置)を掴むようにロボットが動作します。
+このとき、ロボットは計測した点群データを基にオブジェクトの姿勢を繰り返し推定している状態になります。この状態の間であれば、オブジェクトの位置を自由に動かしてもらって構いません。ただし、動かしている人の手がセンサに写っていると姿勢推定のプログラムが止まるので、動かした後は手がセンサに映らないようにしましょう。オブジェクトを動かした後、**オブジェクトの姿勢を表すTFが異常でないかを確認してから**再度ENTERキーを押します。すると、推定した姿勢を基にオブジェクトの適切な箇所(TFの中心から赤い軸を基に＋約４cmの位置)を掴むようにロボットが動作します。
 
 At this point, the robot is continuously estimating the object's pose based on the captured point cloud data. During this state, you are free to move the object around. However, if the hand of the person moving the object is visible to the sensor, the pose estimation program will stop, so make sure the hand is not in view of the sensor after moving the object. After moving the object, ensure that the TF representing the object's pose is correct before pressing the Enter key again. When you do, the robot will move to grasp the appropriate part of the object (about 4 cm from the center of the TF, based on the red axis).
 
