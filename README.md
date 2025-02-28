@@ -17,6 +17,23 @@ A Kalman filter was also applied to reduce noise in the inference time series.
       <img src="https://github.com/user-attachments/assets/6df9336d-0786-4401-8cc2-c790c5523522" width: 50% height: auto >
 </p>
 
+### Ubuntu環境の用意（Packages within the workspace）
+
+本パッケージはUbuntu20.04のOS上で動作します．
+
+This package runs on Ubuntu 20.04 OS.
+
+### Robot Operating System（ROS）のインストール（Installing ROS）
+
+ROS Noeticをインストールします．
+（参考：https://wiki.ros.org/noetic/Installation/Ubuntu）
+
+ROS Noetic is installed.
+(Reference:https://wiki.ros.org/noetic/Installation/Ubuntu)
+
+
+### ワークスペース内のパッケージ（Packages within the workspace）
+
 実機（ロボット）はUFACTORYのxArm6を使用しています。（https://www.ufactory.cc/wp-content/uploads/2023/05/xArm-User-Manual-V2.0.0.pdf）
 実機は上図のように計算機と接続しています。
 
