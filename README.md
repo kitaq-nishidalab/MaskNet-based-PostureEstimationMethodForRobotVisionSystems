@@ -67,6 +67,14 @@ This environment assumes that the workspace follows the structure below, with on
       <img src="https://github.com/user-attachments/assets/9aa88dec-7590-442f-8d00-f607eeaf0f00" width="300" height="400">
 </div>
 
+### ロボットの姿勢キャリブレーション（Calibration）
+
+以下のサイトを参考にしてロボットのキャリブレーションを行ってください。
+
+Please perform the robot calibration by referring to the following site.
+
+https://www.notion.so/1ae4a31c2634801285b5d7b515f05091
+
 # 実行手順（Execution steps）
 
 
